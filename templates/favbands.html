@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+	<form action="{{ url_for('my_view.fav_bands') }}" method="post">
+		<h2>Add band to list</h2>
+		<div>
+			<input type="text" name="entry_song" id="band_song" placeholder="Song name" required>
+			<input type="text" name="entry_artist" id="band_artist" placeholder="Artist" required>
+			<input type="text" name="entry_album" id="band_album" placeholder="Album">
+			<div id="band-rating">
+				Rating:
+				<label><input type="radio" name="entry_rating" value="1" required><span class="fa fa-star"></span></label>
+				<label><input type="radio" name="entry_rating" value="2"><span class="fa fa-star"></span></label>
+				<label><input type="radio" name="entry_rating" value="3"><span class="fa fa-star"></span></label>
+				<label><input type="radio" name="entry_rating" value="4"><span class="fa fa-star"></span></label>
+				<label><input type="radio" name="entry_rating" value="5"><span class="fa fa-star"></span></label>
+			</div>
+			<input type="submit">
+		</div>
+	</form>
+</div>
+<table>
+	<thead>
+		<tr>
+			<td>Song</td>
+			<td>Artist</td>
+			<td>Album</td>
+			<td>Rating</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for band in bands %}
+		<tr>
+			<td>{{ band.song }}</td>
+			<td>{{ band.artist }}</td>
+			<td>{{ band.album }}</td>
+			<td>{{ band.rating }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
